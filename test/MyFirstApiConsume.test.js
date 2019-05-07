@@ -13,27 +13,27 @@ describe('First Api Tests', () => {
       });
     
     it('Consume GET Service with query parameters', () => {
-    const query = {
-        name: 'John',
-        age: '31',
-        city: 'New York'
-    };
+        const query = {
+            name: 'John',
+            age: '31',
+            city: 'New York'
+        };
     
-    return agent.get('https://httpbin.org/get')
-        .query(query)
-        .then((response) => {
-        expect(response.status).to.equal(statusCode.OK);
-        expect(response.body.args).to.eql(query);
+        return agent.get('https://httpbin.org/get')
+            .query(query)
+            .then((response) => {
+            expect(response.status).to.equal(statusCode.OK);
+            expect(response.body.args).to.eql(query);
+            });
         });
-    });
-    
+        
     it('Consume DELETE Service', () => {
-    return agent.del('https://httpbin.org/delete').then((response) => {
-        expect(response.status).to.equal(statusCode.OK);
-        expect(response.body).to.have.property('origin');
+        return agent.del('https://httpbin.org/delete').then((response) => {
+            expect(response.status).to.equal(statusCode.OK);
+            expect(response.body).to.have.property('origin');
+            });
         });
-    });
-    
+        
     it('Consume PACTH Service', () => {
         return agent.patch('https://httpbin.org/patch').then((response) => {
             expect(response.status).to.equal(statusCode.OK);
@@ -54,5 +54,4 @@ describe('First Api Tests', () => {
             expect(response.body).to.be.empty;
         });
         });
-    
 });
