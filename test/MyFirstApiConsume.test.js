@@ -56,3 +56,4 @@ it('Consume HEAD Service', () => {
         expect(response.body).to.not.have.property('origin');
     });
     });
+    
