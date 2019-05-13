@@ -42,7 +42,6 @@ describe('First Api Tests', () => {
 
   it('Consume HEAD Service', () => agent.head('https://httpbin.org/ip').then((response) => {
     expect(response.status).to.equal(statusCode.OK);
-    // expect(response.body).to.be.empty; tslint saca error, como hacerlo?
-    expect(response.body).to.not.have.property('origin');
+    expect(response.body).to.eql({});
   }));
 });
