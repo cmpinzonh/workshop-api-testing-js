@@ -28,7 +28,6 @@ describe('First Api Tests', () => {
   it('Consume DELETE Service', () => agent.del('https://httpbin.org/delete').then((response) => {
     expect(response.status).to.equal(statusCode.OK);
     expect(response.body).to.have.property('origin');
-    // Se evalua la propiedad 'json' que aparece del response del request DELETE
     expect(response.body).to.have.property('json');
   }));
 
