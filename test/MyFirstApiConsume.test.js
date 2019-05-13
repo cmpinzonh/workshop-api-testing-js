@@ -40,7 +40,7 @@ describe('First Api Tests', () => {
     expect(response.body).to.have.property('origin');
   }));
 
-  it('Consume HEAD Service', () => agent.head('https://httpbin.org/ip').then((response) => {
+  it('Consume HEAD Service', () => agent.head('https://httpbin.org/headers').then((response) => {
     expect(response.status).to.equal(statusCode.OK);
     expect(response.body).to.eql({});
   }));
