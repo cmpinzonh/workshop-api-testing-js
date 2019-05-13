@@ -49,6 +49,6 @@ describe('First Api Tests', () => {
   it('Consume HEAD Service', () => agent.head('https://httpbin.org/headers').then((response) => {
     expect(response.status).to.equal(statusCode.OK);
     expect(response.body).to.eql({});
-    expect(response.hasOwnProperty('body')).to.equal(false);
+    // expect(response.hasOwnProperty('body')).to.equal(false);
   }));
 });
