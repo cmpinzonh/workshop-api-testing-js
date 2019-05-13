@@ -28,20 +28,27 @@ describe('First Api Tests', () => {
   it('Consume DELETE Service', () => agent.del('https://httpbin.org/delete').then((response) => {
     expect(response.status).to.equal(statusCode.OK);
     expect(response.body).to.have.property('origin');
+    // Se evalua la propiedad 'json' que aparece del response del request DELETE
+    expect(response.body).to.have.property('json');
   }));
 
   it('Consume PACTH Service', () => agent.patch('https://httpbin.org/patch').then((response) => {
     expect(response.status).to.equal(statusCode.OK);
     expect(response.body).to.have.property('origin');
+    // Se evalua la propiedad 'json' que aparece del response del request PATCH
+    expect(response.body).to.have.property('json');
   }));
 
   it('Consume PUT Service', () => agent.put('https://httpbin.org/put').then((response) => {
     expect(response.status).to.equal(statusCode.OK);
     expect(response.body).to.have.property('origin');
+    // Se evalua la propiedad 'json' que aparece del response del request PUT
+    expect(response.body).to.have.property('json');
   }));
 
   it('Consume HEAD Service', () => agent.head('https://httpbin.org/headers').then((response) => {
     expect(response.status).to.equal(statusCode.OK);
     expect(response.body).to.eql({});
+    expect(response.hasOwnProperty('body')).to.equal(false);
   }));
 });
