@@ -9,7 +9,7 @@ describe('Tests using the PUT method', () => {
   let userFollowing;
 
   let followUser;
-  
+
   before(() => {
     followUser = agent.put(`${urlBase}/user/following/${githubUserName}`)
       .auth('token', process.env.ACCESS_TOKEN);
