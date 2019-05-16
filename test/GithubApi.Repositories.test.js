@@ -23,6 +23,7 @@ describe('Github Api Test', () => {
     let repository;
     before(() => {
       const reposQuery = agent.get(`${urlBase}/repos`)
+        .auth('token', process.env.ACCESS_TOKEN)
         .then((response) => {
           repositories = response.body;
           repository = repositories.find(repos => repos.name === expectedRepo);
