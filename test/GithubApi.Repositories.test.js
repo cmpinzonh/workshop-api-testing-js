@@ -8,6 +8,7 @@ const urlBase = 'https://api.github.com/users/aperdomob';
 describe('Github Api Test', () => {
   describe('Authentication', () => {
     it('Test para Alejandro Perdomo', () => agent.get(`${urlBase}`)
+      .auth('token', process.env.ACCESS_TOKEN)
       .then((response) => {
         expect(response.status).to.equal(statusCode.OK);
         expect(response.body).to.have.property('name');
