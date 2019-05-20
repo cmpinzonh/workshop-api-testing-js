@@ -41,7 +41,7 @@ describe('Check if there is a logged in user', () => {
 
       const title = { title: 'This is just a test' };
       before(() => {
-        const issueCreate = agent.post(`${urlBase}/repos/${user.login}/${repository.name}/issues`, title)
+        const issueCreate = agent.post('https://api.github.com/repos/cmpinzonh/protractor-workshop-2018/issues', title)
           .auth('token', process.env.ACCESS_TOKEN)
           .then((response) => {
             issue = response.body;
@@ -59,7 +59,7 @@ describe('Check if there is a logged in user', () => {
         let updatedIssue;
 
         before(() => {
-          const issueUpdate = agent.patch(`${urlBase}/repos/${user.login}/${repository.name}/issues/${issue.number}`, updateBodyIssue)
+          const issueUpdate = agent.patch(`https://api.github.com/repos/cmpinzonh/protractor-workshop-2018/issues/${issue.number}`, updateBodyIssue)
             .auth('token', process.env.ACCESS_TOKEN)
             .then((response) => {
               updatedIssue = response.body;
