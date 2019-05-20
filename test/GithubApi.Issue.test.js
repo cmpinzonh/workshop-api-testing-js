@@ -3,6 +3,7 @@ const { expect } = require('chai');
 
 const urlBase = 'https://api.github.com';
 
+
 describe('Check if there is a logged in user', () => {
   let user;
 
