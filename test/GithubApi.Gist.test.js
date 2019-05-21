@@ -22,34 +22,41 @@ describe('Create and delete gist', () => {
       }
     }
   };
+
   before(() => {
     createGistQuery = agent.post(`${urlBase}/gists`, newGist)
       .auth('token', process.env.ACCESS_TOKEN);
   });
+
   it('Check if the gist was created', () => createGistQuery.then((response) => {
     gist = response.body;
     expect(response.status).to.be.equal(statusCode.CREATED);
     expect(gist.public).to.be.equal(true);
     expect(gist.description).to.be.equal('example promise');
   }));
+
   describe('Check the new gist', () => {
     let newGistQuery;
     before(() => {
       newGistQuery = agent.get(gist.url)
         .auth('token', process.env.ACCESS_TOKEN);
     });
+
     it('The gist exists', () => newGistQuery.then((response) => {
       expect(response.status).to.be.equal(statusCode.OK);
     }));
+
     describe('Delete the gist', () => {
       let deleteQuery;
       before(() => {
         deleteQuery = agent.del(gist.url)
           .auth('token', process.env.ACCESS_TOKEN);
       });
+
       it('Check for no-content status', () => deleteQuery.then((response) => {
         expect(response.status).to.be.equal(statusCode.NO_CONTENT);
       }));
+
       describe('Access the deleted gist', () => {
         let gistNotFoundQuery;
 
