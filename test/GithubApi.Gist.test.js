@@ -7,9 +7,9 @@ const urlBase = 'https://api.github.com';
 describe('Create and delete gist', () => {
   let createGistQuery;
   let gist;
-  let createGistResponse;
-  let checkGistResponse;
-  let deleteGistResponse;
+  let createGistResponseStatus;
+  let checkGistResponseStatus;
+  let deleteGistResponseStatus;
   const gistContent = `function wait(method, time) {
     return new Promise((resolve) => {
       setTimeout(resolve(method()), time);
@@ -27,18 +27,18 @@ describe('Create and delete gist', () => {
     }
   };
 
-  before(async () => {
-    createGistQuery = await agent.post(`${urlBase}/gists`, newGist)
+  before(() => {
+    createGistQuery = agent.post(`${urlBase}/gists`, newGist)
       .auth('token', process.env.ACCESS_TOKEN)
       .then((response) => {
         gist = response.body;
-        createGistResponse = response.statusCode;
+        createGistResponseStatus = response.statusCode;
       });
     return createGistQuery;
   });
 
   it('Check if the gist was created', () => {
-    expect(createGistResponse).to.be.equal(statusCode.CREATED);
+    expect(createGistResponseStatus).to.be.equal(statusCode.CREATED);
     expect(gist.public).to.be.equal(true);
     expect(gist.description).to.be.equal('example promise');
   });
@@ -50,13 +50,13 @@ describe('Create and delete gist', () => {
       newGistQuery = agent.get(gist.url)
         .auth('token', process.env.ACCESS_TOKEN)
         .then((response) => {
-          checkGistResponse = response.statusCode;
+          checkGistResponseStatus = response.statusCode;
         });
       return newGistQuery;
     });
 
     it('The gist exists', () => {
-      expect(checkGistResponse).to.be.equal(statusCode.OK);
+      expect(checkGistResponseStatus).to.be.equal(statusCode.OK);
     });
 
     describe('Delete the gist', () => {
@@ -66,13 +66,13 @@ describe('Create and delete gist', () => {
         deleteQuery = agent.del(gist.url)
           .auth('token', process.env.ACCESS_TOKEN)
           .then((response) => {
-            deleteGistResponse = response.statusCode;
+            deleteGistResponseStatus = response.statusCode;
           });
         return deleteQuery;
       });
 
       it('Check for no-content status', () => {
-        expect(deleteGistResponse).to.be.equal(statusCode.NO_CONTENT);
+        expect(deleteGistResponseStatus).to.be.equal(statusCode.NO_CONTENT);
       });
 
       describe('Access the deleted gist', () => {
@@ -82,6 +82,7 @@ describe('Create and delete gist', () => {
           gistNotFoundQuery = agent
             .get(gist.url)
             .auth('token', process.env.ACCESS_TOKEN);
+          // return gistNotFoundQuery;
         });
 
         it('then the Gits should not be accessible', () => gistNotFoundQuery
