@@ -28,8 +28,6 @@ describe('Check if there is a logged in user', () => {
         .auth('token', process.env.ACCESS_TOKEN)
         .then((response) => {
           repository = response.body.shift();
-          console.log(JSON.stringify(repository.name));
-          console.log(JSON.stringify(user.login));
         });
       return aRepository;
     });
