@@ -82,7 +82,6 @@ describe('Create and delete gist', () => {
           gistNotFoundQuery = agent
             .get(gist.url)
             .auth('token', process.env.ACCESS_TOKEN);
-          // return gistNotFoundQuery;
         });
 
         it('then the Gits should not be accessible', () => gistNotFoundQuery
