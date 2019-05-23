@@ -7,7 +7,6 @@ const urlBase = 'https://api.github.com';
 describe('Given a Github user', () => {
   describe('when querying all the users', () => {
     let queryTime;
-    // let allUsers;
 
     before(() => {
       const usersQuery = agent
