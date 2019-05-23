@@ -19,7 +19,7 @@ describe('Given a Github user', () => {
       return usersQuery;
     });
 
-    it.only('should have a quick response', () => {
+    it('should have a quick response', () => {
       expect(queryTime).to.be.below(5000);
     });
   });
