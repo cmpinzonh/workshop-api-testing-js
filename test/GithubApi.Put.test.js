@@ -28,7 +28,7 @@ describe('Tests using the PUT method', () => {
 
     it('user should have been followed', () => userFollowingQuery.then((response) => {
       userFollowing = response.body.find(users => users.login === githubUserName);
-      expect(userFollowing.login).to.be.equal(githubUserName);
+      expect(userFollowing.login).to.equal(githubUserName);
     }));
 
     describe('Check function indempotency', () => {
@@ -52,7 +52,7 @@ describe('Tests using the PUT method', () => {
 
         it('user should still be followed', () => userFollowingAgain.then((response) => {
           userFollowingAgain = response.body.find(user => user.login === githubUserName);
-          expect(userFollowingAgain.login).to.be.equal(githubUserName);
+          expect(userFollowingAgain.login).to.equal(githubUserName);
         }));
       });
     });

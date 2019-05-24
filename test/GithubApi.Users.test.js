@@ -27,7 +27,7 @@ describe('Given a github user', () => {
       expect(queryTime).to.be.below(5000);
     });
 
-    it('and it should contain thirty users by default pagination', () => expect(allUsersQueryLength).to.be.equal(30));
+    it('and it should contain thirty users by default pagination', () => expect(allUsersQueryLength).to.equal(30));
 
     describe('when it filters the number of users by 10', () => {
       let tenUsersQuery;
