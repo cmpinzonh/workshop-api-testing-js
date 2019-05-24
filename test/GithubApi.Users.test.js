@@ -7,7 +7,6 @@ const urlBase = 'https://api.github.com';
 describe('Given a github user', () => {
   describe('When querying all the users', () => {
     let queryTime;
-    let allUsers;
     let allUsersQueryLength;
 
     before(() => {
@@ -16,28 +15,21 @@ describe('Given a github user', () => {
         .auth('token', process.env.ACCESS_TOKEN)
         .use(responseTime((request, time) => {
           queryTime = time;
-        }));
+        }))
+        .then((response) => {
+          allUsersQueryLength = response.body.length;
+        });
 
       return usersQuery;
     });
 
     it('then it should have a quick response', () => {
-      expect(queryTime).to.be.at.below(5000);
-    });
-
-    before(() => {
-      allUsers = agent
-        .get(`${urlBase}/users`)
-        .auth('token', process.env.ACCESS_TOKEN)
-        .then((response) => {
-          allUsersQueryLength = response.body.length;
-        });
-      return allUsers;
+      expect(queryTime).to.be.below(5000);
     });
 
     it('and it should contain thirty users by default pagination', () => expect(allUsersQueryLength).to.be.equal(30));
 
-    describe('when it filters the number of users to 10', () => {
+    describe('when it filters the number of users by 10', () => {
       let tenUsersQuery;
       let tenUsersQueryLength;
 
@@ -52,10 +44,10 @@ describe('Given a github user', () => {
         return tenUsersQuery;
       });
 
-      it('then the number of filtered users should be equals to 10', () => expect(tenUsersQueryLength).to.be.equal(10));
+      it('then the number of filtered users should be equal by 10', () => expect(tenUsersQueryLength).to.equal(10));
     });
 
-    describe('when it filters the number of users to 100', () => {
+    describe('when it filters the number of users by 50', () => {
       let oneHundredUsersQuery;
       let oneHundredUsersQueryLength;
 
@@ -70,7 +62,7 @@ describe('Given a github user', () => {
         return oneHundredUsersQuery;
       });
 
-      it('then the number of filtered users should be equals to 100', () => expect(oneHundredUsersQueryLength).to.be.equal(50));
+      it('then the number of filtered users should be equal by 50', () => expect(oneHundredUsersQueryLength).to.equal(50));
     });
   });
 });
