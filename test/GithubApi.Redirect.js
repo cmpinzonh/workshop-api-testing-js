@@ -15,8 +15,8 @@ describe('Redirection test', () => {
   });
 
   it('Check new URL is in error response', () => redirectQuery.catch((error) => {
-    expect(error.status).to.be.equal(301);
-    expect(error.response.headers.location).to.be.equal(newURL);
+    expect(error.status).to.equal(301);
+    expect(error.response.headers.location).to.equal(newURL);
   }));
 
   describe('Test new URL', () => {
@@ -32,7 +32,7 @@ describe('Redirection test', () => {
     });
 
     it('Response status should be OK', () => {
-      expect(newURLResponseStatus).to.be.equal(statusCode.OK);
+      expect(newURLResponseStatus).to.equal(statusCode.OK);
     });
   });
 });

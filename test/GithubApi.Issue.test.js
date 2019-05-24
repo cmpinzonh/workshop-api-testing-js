@@ -50,8 +50,8 @@ describe('Check if there is a logged in user', () => {
       });
 
       it('Check if the issues body is empty', () => {
-        expect(issue.title).to.be.equal(title.title);
-        expect(issue.body).to.be.equal(null);
+        expect(issue.title).to.equal(title.title);
+        expect(issue.body).to.equal(null);
       });
 
       describe('Edit the body of the issue', () => {
@@ -68,9 +68,9 @@ describe('Check if there is a logged in user', () => {
         });
 
         it('Check that the new body was created correctly', () => {
-          expect(updatedIssue.title).to.be.equal(title.title);
-          expect(updatedIssue.body).to.be.equal(updateBodyIssue.body);
-          expect(updatedIssue.state).to.be.equal(updateBodyIssue.state);
+          expect(updatedIssue.title).to.equal(title.title);
+          expect(updatedIssue.body).to.equal(updateBodyIssue.body);
+          expect(updatedIssue.state).to.equal(updateBodyIssue.state);
         });
       });
     });

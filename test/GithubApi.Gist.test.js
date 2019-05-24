@@ -38,9 +38,9 @@ describe('Create and delete gist', () => {
   });
 
   it('Check if the gist was created', () => {
-    expect(createGistResponseStatus).to.be.equal(statusCode.CREATED);
-    expect(gist.public).to.be.equal(true);
-    expect(gist.description).to.be.equal('example promise');
+    expect(createGistResponseStatus).to.equal(statusCode.CREATED);
+    expect(gist.public).to.equal(true);
+    expect(gist.description).to.equal('example promise');
   });
 
   describe('Check the new gist', () => {
@@ -56,7 +56,7 @@ describe('Create and delete gist', () => {
     });
 
     it('The gist exists', () => {
-      expect(checkGistResponseStatus).to.be.equal(statusCode.OK);
+      expect(checkGistResponseStatus).to.equal(statusCode.OK);
     });
 
     describe('Delete the gist', () => {
@@ -72,7 +72,7 @@ describe('Create and delete gist', () => {
       });
 
       it('Check for no-content status', () => {
-        expect(deleteGistResponseStatus).to.be.equal(statusCode.NO_CONTENT);
+        expect(deleteGistResponseStatus).to.equal(statusCode.NO_CONTENT);
       });
 
       describe('Access the deleted gist', () => {
