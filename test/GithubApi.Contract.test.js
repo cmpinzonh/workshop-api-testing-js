@@ -22,7 +22,7 @@ describe('Given event Github API resources', () => {
       return listPublicEventsQuery;
     });
 
-    it.only('then the body should have a schema', () => {
+    it('then the body should have a schema', () => {
       expect(responseSchema).to.be.jsonSchema(listPublicEventsSchema);
     });
   });
